@@ -29,7 +29,7 @@ BEGIN
 
   -- Insert data into table
   FOR i IN 1..p_param LOOP
-    INSERT INTO t1 (c1) VALUES (i);
+     EXECUTE IMMEDIATE 'INSERT INTO ' || p_table_name || ' (' || p_column_name || ') VALUES (' || i || ')';
   END LOOP;
 
   COMMIT;
@@ -39,6 +39,5 @@ EXCEPTION
 END;
 
 BEGIN
-  cw1(1000000, 't1', 'c1');
+  cw1(100, 't1', 'c1');
 END;
-
